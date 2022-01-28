@@ -1,0 +1,156 @@
+# Go Generics
+
+March 2022
+Tags: golang, go, generics
+Summary: Introduction to generics in Go.
+
+Manel Montilla
+manel.montilla@adevinta.com
+
+## Materials
+Materials of this presentation can be found at:
+[go-generics-presentation](https://github.com/manelmontilla/presentations/introduction-to-generics)
+
+High quality sources to learn generics
+* Documentation
+   * [Tutorial](https://go.dev/doc/tutorial/generics#declare_type_constraint)
+   * [Type parameters proposal](https://go.googlesource.com/proposal/+/refs/heads/master/design/43651-type-parameters.md)
+* Videos
+   * [generics!](https://www.youtube.com/watch?v=Pa_e9EeCdy8)
+   * [How to use generics](https://www.youtube.com/watch?v=nr8EpUO9jhw)
+
+## Agenda
+
+- The "gaps"
+- Introduction to generics
+
+**Interrupt whenever you want to make questions**
+
+## The gaps: Boilerplate {#boilerplate}
+
+Compare if two maps of strings have exactly the same key-value pairs:
+
+.code code/compare_maps.go  /^func StringsMapsEqual/,/^\n
+
+[Playground](https://gotipplay.golang.org/p/hpSuli__61G)
+
+## The gaps: Boilerplate
+
+The same function but for maps of integers and strings:
+
+.code code/compare_maps.go  /^func IntStringsMapsEqual/,/^}
+
+The same for maps of integers:
+
+.code code/compare_maps.go  /^func IntsMapsEqual/,/^
+
+and for sets of strings...
+
+.code code/compare_maps.go  /^func StringSetsEqual/,/^
+
+## The gaps: Static typing (interface{})
+
+Container data structures
+
+.play code/cmd/containers1/main.go /START OMIT/,/END OMIT/
+
+[Playground](https://gotipplay.golang.org/p/pIMaIkMsYvC)
+
+## The gaps: Static typing (interface{})
+
+.code code/cmd/containers2/discounts.go /START OMIT/,/END OMIT/
+
+[Playground](https://gotipplay.golang.org/p/dMWqcaSz5sB)
+
+## Generics: Type Parameters and Constraints
+
+**Type Parameters**
+
+* Represent a set of types instead of a set 
+of values
+
+* Can be defined in *functions* or *types*
+
+* Defined between [ ], after the name of a function
+or type and separated by commas.
+
+**Type Constraints**
+
+Define a concrete set of types that are valid for a type parameter.
+
+**Examples**
+
+func SetsEqual **[T comparable, K comparable]** (m1, m2 map[**T**]**K**) bool
+
+type Cache **[T comparable, K any]** struct
+
+## Generics: Instantiation, Type inference
+
+To use a generic type or function, we must specify a concrete type belonging to
+the type set defined by the constraint.
+
+For instance, the function
+
+.code code/cmd/generics/generics.go  /^func SetsEqual/,/^
+
+Can be used (instantiated) like this:
+
+.code code/cmd/generics/generics.go  /m1 := map\[string]string/,/m2\)/
+
+We (usually) can omit the type parameters
+
+.code code/cmd/generics/generics.go  /firstM := map\[string]string/,/secondM\)/
+
+[Playground](https://gotipplay.golang.org/p/PqoYUik-Ooy)
+
+## Generics: Constraints
+
+* Define the set of types that a type parameter can be instantiated with
+
+* Therefore they define what methods and operators we can use
+
+* Type constraints are interface types
+
+* Plus two new predeclared names: **comparable** and **any**
+
+* **comparable**: all types accepting the operators **"=="**
+and **"!="** like structs, arrays or interface types
+
+* **any**: just an alias of interface{} 
+
+## Generics: Interface types
+
+**Usual interfaces**
+
+.code code/cmd/generics/constraints.go /type Hello/,/}/
+
+**Union elements**
+
+Enumerations of possible types or underlaying types
+
+.code code/cmd/generics/constraints.go /type SomeNumbers/,/}/
+
+.code code/cmd/generics/constraints.go /type SomeUnderlayingNumbers/,/type MyInt/
+
+*Can only be used as constraints, not as "normal" interfaces*
+
+## Generics: Silly example
+
+[Playgorund](https://gotipplay.golang.org/p/GQjJrR0jO75)
+
+## Generics: Experimental packages
+
+* Constraints
+
+    * [https://github.com/golang/exp/blob/master/constraints/constraints.go](https://github.com/golang/exp/blob/master/constraints/constraints.go)
+
+* Generic functions
+
+    * [https://github.com/golang/exp/blob/master/maps/maps.go](https://github.com/golang/exp/blob/master/maps/maps.go)
+    * [https://github.com/golang/exp/blob/master/slices/slices.go](https://github.com/golang/exp/blob/master/slices/slices.go)
+
+
+Those packages were going to be initially in the standard library, but it was
+decided to leave them as ``experimental`` by now.
+
+## Q&A

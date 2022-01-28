@@ -34,15 +34,17 @@ The same for maps of ints:
 
 .code code/compare_maps.go  /^func IntsMapsEqual/,/^
 
-for sets of strings:
+and for sets of strings...
 
 .code code/compare_maps.go  /^func StringSetsEqual/,/^
 
 ## The problems: Boilerplate
 
-But the implementation is exactly the same
+.code -edit code/cmd/compare_maps_impl/same_impl.go /START OMIT/,/END OMIT/
 
-.code code/cmd/compare_maps_impl/same_impl.go /START OMIT/,/END OMIT/
+## The problems: Static typing (interface{})
+
+.play code/cmd/containers1/main.go /START OMIT/,/END OMIT/
 
 ## The problems: Static typing (interface{})
 

@@ -2,7 +2,6 @@ package main
 
 import "fmt"
 
-// START OMIT
 type Cache struct {
 	cache map[interface{}]interface{}
 }
@@ -25,34 +24,11 @@ func (c Cache) Keys() []interface{} {
 }
 
 func main() {
+	// START OMIT
 	c := Cache{cache: make(map[interface{}]interface{})}
-	name := "manel"
-	items := 2
-	c.Add(name, items) // HL
-	has := hasDisccounts(c, name)
-	if has {
-		fmt.Printf("apply disccount to %+v", has)
+	c.Add("manel", 2) // HL
+	if hasDisccounts(c, "manel") {
+		fmt.Println("applying disccount to manel")
 	}
+	// END OMIT
 }
-
-func hasDisccounts(c Cache, name string) bool {
-	for _, n := range c.Keys() {
-		nstring, ok := n.(string) // HL
-		if !ok {
-			panic("what can I do?") // HL
-		}
-		if nstring == name {
-			items := c.Get(n)
-			intItems, ok := items.(int)
-			if !ok {
-				panic("what can I do?") // HL
-			}
-			if intItems > 1 {
-				return true
-			}
-		}
-	}
-	return false
-}
-
-//END OMIT

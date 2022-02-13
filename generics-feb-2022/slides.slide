@@ -13,18 +13,17 @@ Materials of this presentation can be found at:
 
 ## Agenda
 
-- The "problems"
-- Generics in go introduction
-- When to use them
+- The "gaps"
+- Introduction to generics
 - More information
 
-## The problems: Boilerplate {#boilerplate}
+## The gaps: Boilerplate {#boilerplate}
 
 Compare if two maps of strings have exactly the same key-value pairs:
 
 .code code/compare_maps.go  /^func StringsMapsEqual/,/^\n
 
-## The problems: Boilerplate
+## The gaps: Boilerplate
 
 The same function but for maps of ints and strings:
 
@@ -38,16 +37,58 @@ and for sets of strings...
 
 .code code/compare_maps.go  /^func StringSetsEqual/,/^
 
-## The problems: Boilerplate
+## The gaps: Static typing (interface{})
 
-.code -edit code/cmd/compare_maps_impl/same_impl.go /START OMIT/,/END OMIT/
-
-## The problems: Static typing (interface{})
+Container data structures
 
 .play code/cmd/containers1/main.go /START OMIT/,/END OMIT/
 
-## The problems: Static typing (interface{})
+## The gaps: Static typing (interface{})
 
-.play code/cmd/containers1/main.go /START OMIT/,/END OMIT/
+.code code/cmd/containers2/main.go /START OMIT/,/END OMIT/
+.code code/cmd/containers2/discounts.go /START OMIT/,/END OMIT/
+
+## Generics: Type Parameters and Type Constraints
+
+**Type Parameters**
+
+* Represent a set of types instead of a set 
+of values
+
+* Can be defined in *functions* or *types*
+
+* Defined between [ ], after the name of a function
+or type and separated by commas.
+
+**Type Constraints**
+
+Define a concrete set of types that are valid for a type parameter.
+
+**Examples**
+
+func SetsEqual **[T comparable, K any]** (m1, m2 map[**T**]**K**) bool
+
+type Cache **[T comparable, K any]** struct
+
+## Generics: Instantiation
+
+To use a generic type or function, we must specify a concrete type belonging to
+the type set defined by the constraint.
+
+For instance, the function
+
+.code code/cmd/generics/generics.go  /^func SetsEqual/,/^
+
+Can be used (instantiated) like this:
+
+.code code/cmd/generics/generics.go  /m1 := map\[string]string/,/m2\)/
+
+
+Generics: Constraints
+
+Define the set of types that a type parameter can be instatiated with.
+Therefore the it defines what methods and operators we can use.
+
+
 
 ## Q&A

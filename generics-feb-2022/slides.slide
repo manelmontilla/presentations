@@ -84,10 +84,44 @@ Can be used (instantiated) like this:
 .code code/cmd/generics/generics.go  /m1 := map\[string]string/,/m2\)/
 
 
-Generics: Constraints
+## Generics: Constraints
 
-Define the set of types that a type parameter can be instatiated with.
-Therefore the it defines what methods and operators we can use.
+* Define the set of types that a type parameter can be instatiated with
+
+* Therefore they define what methods and operators we can use
+
+* Type constraints are interface types
+
+* Plus two new predeclared names: **comparable** and **any**
+
+* **comparable**: all types accepting the operators **"=="**
+and **"!="** like structs, arrays or interface types
+
+* **any**: just an alias of interface{} 
+
+## Generics: Interface types
+
+**Usual interfaces**
+
+.code code/cmd/generics/constraints.go /type Hello/,/}/
+
+**Plus Union elements**
+
+Enumeration of posible types or underlaying types
+using the **aproximation element ~** 
+
+.code code/cmd/generics/constraints.go /type SomeNumbers/,/}/
+
+.code code/cmd/generics/constraints.go /type SomeUnderlayingNumbers/,/type MyInt/
+
+## Generics: Implementation Examples
+
+
+
+
+
+
+
 
 
 

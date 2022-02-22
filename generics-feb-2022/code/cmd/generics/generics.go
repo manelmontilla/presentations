@@ -26,3 +26,10 @@ func compareIntStringMaps() {
 	equal := SetsEqual[int, string](m1, m2)
 	println(equal)
 }
+
+func compareStringMapsInference() {
+	firstM := map[string]string{}
+	secondM := map[string]string{}
+	equal := SetsEqual(firstM, secondM)
+	println(equal)
+}

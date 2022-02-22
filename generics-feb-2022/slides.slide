@@ -11,11 +11,20 @@ manel.montilla@adevinta.com
 Materials of this presentation can be found at:
 [go-generics-presentation](https://github.com/manelmontilla/presentations/generics-feb-2022)
 
+High quality sources to learn generics
+* Documentation
+   * [Tutorial](https://go.dev/doc/tutorial/generics#declare_type_constraint)
+   * [Type parameters proporsal](https://go.googlesource.com/proposal/+/refs/heads/master/design/43651-type-parameters.md)
+* Videos
+   * [generics!](https://www.youtube.com/watch?v=Pa_e9EeCdy8)
+   * [How to use generics](https://www.youtube.com/watch?v=nr8EpUO9jhw)
+
 ## Agenda
 
 - The "gaps"
 - Introduction to generics
-- More information
+
+**Interrupt me whenenver you want to make questions**
 
 ## The gaps: Boilerplate {#boilerplate}
 
@@ -48,7 +57,7 @@ Container data structures
 .code code/cmd/containers2/main.go /START OMIT/,/END OMIT/
 .code code/cmd/containers2/discounts.go /START OMIT/,/END OMIT/
 
-## Generics: Type Parameters and Type Constraints
+## Generics: Type Parameters and Constraints
 
 **Type Parameters**
 
@@ -66,11 +75,11 @@ Define a concrete set of types that are valid for a type parameter.
 
 **Examples**
 
-func SetsEqual **[T comparable, K any]** (m1, m2 map[**T**]**K**) bool
+func SetsEqual **[T comparable, K comparable]** (m1, m2 map[**T**]**K**) bool
 
 type Cache **[T comparable, K any]** struct
 
-## Generics: Instantiation
+## Generics: Instantiation, Type inference
 
 To use a generic type or function, we must specify a concrete type belonging to
 the type set defined by the constraint.
@@ -82,6 +91,10 @@ For instance, the function
 Can be used (instantiated) like this:
 
 .code code/cmd/generics/generics.go  /m1 := map\[string]string/,/m2\)/
+
+We (usually) can omit the type parameters
+
+.code code/cmd/generics/generics.go  /firstM := map\[string]string/,/secondM\)/
 
 
 ## Generics: Constraints
@@ -105,7 +118,7 @@ and **"!="** like structs, arrays or interface types
 
 .code code/cmd/generics/constraints.go /type Hello/,/}/
 
-**Plus Union elements**
+**Union elements**
 
 Enumeration of posible types or underlaying types
 using the **aproximation element ~** 
@@ -114,15 +127,19 @@ using the **aproximation element ~**
 
 .code code/cmd/generics/constraints.go /type SomeUnderlayingNumbers/,/type MyInt/
 
-## Generics: Implementation Examples
+*Can only be used as constraints, not as "normal" interfaces*
+
+## Generics: Examples
+
+* Constraints
+
+    * [https://github.com/golang/exp/blob/master/constraints/constraints.go](https://github.com/golang/exp/blob/master/constraints/constraints.go)
+
+* Generic functions
+
+    * [https://github.com/golang/exp/blob/master/maps/maps.go](https://github.com/golang/exp/blob/master/maps/maps.go)
+    * [https://github.com/golang/exp/blob/master/slices/slices.go](https://github.com/golang/exp/blob/master/slices/slices.go)
 
 
-
-
-
-
-
-
-
-
-## Q&A
+Those packages were going to be initially into the standard library, but it was
+decided to leave them as ``experimental`` by now.

@@ -32,6 +32,8 @@ Compare if two maps of strings have exactly the same key-value pairs:
 
 .code code/compare_maps.go  /^func StringsMapsEqual/,/^\n
 
+[Playgorund](https://gotipplay.golang.org/p/hpSuli__61G)
+
 ## The gaps: Boilerplate
 
 The same function but for maps of ints and strings:
@@ -52,10 +54,13 @@ Container data structures
 
 .play code/cmd/containers1/main.go /START OMIT/,/END OMIT/
 
+[Playground](https://gotipplay.golang.org/p/pIMaIkMsYvC)
+
 ## The gaps: Static typing (interface{})
 
-.code code/cmd/containers2/main.go /START OMIT/,/END OMIT/
 .code code/cmd/containers2/discounts.go /START OMIT/,/END OMIT/
+
+[Playground](https://gotipplay.golang.org/p/dMWqcaSz5sB)
 
 ## Generics: Type Parameters and Constraints
 
@@ -96,6 +101,7 @@ We (usually) can omit the type parameters
 
 .code code/cmd/generics/generics.go  /firstM := map\[string]string/,/secondM\)/
 
+[Playgorund](https://gotipplay.golang.org/p/OwkhSzT6APP)
 
 ## Generics: Constraints
 

@@ -1,20 +1,20 @@
 # Go Generics
-Feb 2022
+
+March 2022
 Tags: golang, go, generics
 Summary: Introduction to generics in Go.
-
 
 Manel Montilla
 manel.montilla@adevinta.com
 
 ## Materials
 Materials of this presentation can be found at:
-[go-generics-presentation](https://github.com/manelmontilla/presentations/generics-feb-2022)
+[go-generics-presentation](https://github.com/manelmontilla/presentations/introduction-to-generics)
 
 High quality sources to learn generics
 * Documentation
    * [Tutorial](https://go.dev/doc/tutorial/generics#declare_type_constraint)
-   * [Type parameters proporsal](https://go.googlesource.com/proposal/+/refs/heads/master/design/43651-type-parameters.md)
+   * [Type parameters proposal](https://go.googlesource.com/proposal/+/refs/heads/master/design/43651-type-parameters.md)
 * Videos
    * [generics!](https://www.youtube.com/watch?v=Pa_e9EeCdy8)
    * [How to use generics](https://www.youtube.com/watch?v=nr8EpUO9jhw)
@@ -24,7 +24,7 @@ High quality sources to learn generics
 - The "gaps"
 - Introduction to generics
 
-**Interrupt me whenenver you want to make questions**
+**Interrupt me whenever you want to make questions**
 
 ## The gaps: Boilerplate {#boilerplate}
 
@@ -32,15 +32,15 @@ Compare if two maps of strings have exactly the same key-value pairs:
 
 .code code/compare_maps.go  /^func StringsMapsEqual/,/^\n
 
-[Playgorund](https://gotipplay.golang.org/p/hpSuli__61G)
+[Playground](https://gotipplay.golang.org/p/hpSuli__61G)
 
 ## The gaps: Boilerplate
 
-The same function but for maps of ints and strings:
+The same function but for maps of integers and strings:
 
 .code code/compare_maps.go  /^func IntStringsMapsEqual/,/^}
 
-The same for maps of ints:
+The same for maps of integers:
 
 .code code/compare_maps.go  /^func IntsMapsEqual/,/^
 
@@ -101,11 +101,11 @@ We (usually) can omit the type parameters
 
 .code code/cmd/generics/generics.go  /firstM := map\[string]string/,/secondM\)/
 
-[Playgorund](https://gotipplay.golang.org/p/OwkhSzT6APP)
+[Playground](https://gotipplay.golang.org/p/PqoYUik-Ooy)
 
 ## Generics: Constraints
 
-* Define the set of types that a type parameter can be instatiated with
+* Define the set of types that a type parameter can be instantiated with
 
 * Therefore they define what methods and operators we can use
 
@@ -126,8 +126,7 @@ and **"!="** like structs, arrays or interface types
 
 **Union elements**
 
-Enumeration of posible types or underlaying types
-using the **aproximation element ~** 
+Enumerations of possible types or underlaying types
 
 .code code/cmd/generics/constraints.go /type SomeNumbers/,/}/
 
@@ -135,7 +134,11 @@ using the **aproximation element ~**
 
 *Can only be used as constraints, not as "normal" interfaces*
 
-## Generics: Examples
+## Generics: Silly example
+
+[Playgorund](https://gotipplay.golang.org/p/GQjJrR0jO75)
+
+## Generics: Experimental packages
 
 * Constraints
 
@@ -147,5 +150,5 @@ using the **aproximation element ~**
     * [https://github.com/golang/exp/blob/master/slices/slices.go](https://github.com/golang/exp/blob/master/slices/slices.go)
 
 
-Those packages were going to be initially into the standard library, but it was
+Those packages were going to be initially in the standard library, but it was
 decided to leave them as ``experimental`` by now.

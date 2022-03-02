@@ -126,7 +126,7 @@ and **"!="** like structs, arrays or interface types
 
 **Union elements**
 
-Enumerations of possible types or underlaying types
+Enumerations of possible types or underlaying types (approximation element)
 
 .code code/cmd/generics/constraints.go /type SomeNumbers/,/}/
 

@@ -24,7 +24,7 @@ High quality sources to learn generics
 - The "gaps"
 - Introduction to generics
 
-**Interrupt me whenever you want to make questions**
+**Interrupt whenever you want to make questions**
 
 ## The gaps: Boilerplate {#boilerplate}
 
@@ -152,3 +152,5 @@ Enumerations of possible types or underlaying types
 
 Those packages were going to be initially in the standard library, but it was
 decided to leave them as ``experimental`` by now.
+
+## Generics: Q&A

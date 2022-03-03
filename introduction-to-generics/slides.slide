@@ -80,7 +80,7 @@ Define a concrete set of types that are valid for a type parameter.
 
 **Examples**
 
-func SetsEqual **[T comparable, K comparable]** (m1, m2 map[**T**]**K**) bool
+func MapsEqual **[T comparable, K comparable]** (m1, m2 map[**T**]**K**) bool
 
 type Cache **[T comparable, K any]** struct
 
@@ -91,7 +91,7 @@ the type set defined by the constraint.
 
 For instance, the function
 
-.code code/cmd/generics/generics.go  /^func SetsEqual/,/^
+.code code/cmd/generics/generics.go  /^func MapsEqual/,/^
 
 Can be used (instantiated) like this:
 
@@ -101,7 +101,7 @@ We (usually) can omit the type parameters
 
 .code code/cmd/generics/generics.go  /firstM := map\[string]string/,/secondM\)/
 
-[Playground](https://gotipplay.golang.org/p/PqoYUik-Ooy)
+[Playground](https://gotipplay.golang.org/p/ci5hJFUVCyy)
 
 ## Generics: Constraints
 
